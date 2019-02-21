@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage Title="Wi-Fi QR Code" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="WifiBarcodeSample.MainPage" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms" xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable">
+    <ScrollView>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <zxing:ZXingBarcodeImageView x:Name="BarcodeImageView" BarcodeFormat="QR_CODE" IsVisible="false" BarcodeValue="Foo">
+                <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                    <zxcm:EncodingOptions Width="300" Height="300" />
+                </zxing:ZXingBarcodeImageView.BarcodeOptions>
+            </zxing:ZXingBarcodeImageView>
+            <zxing:ZXingScannerView x:Name="BarcodeScanView" IsVisible="false" HeightRequest="200" OnScanResult="Handle_OnScanResult" />
+            <Label Text="SSID" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Entry x:Name="Ssid" Text="" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Switch x:Name="HiddenSsid" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="SSID not broadcasted" HorizontalOptions="Center" VerticalOptions="Center" />
+            </StackLayout>
+            <Label Text="Security" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Picker x:Name="Security" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>WPA/WPA2</x:String>
+                        <x:String>WEP</x:String>
+                        <x:String>None</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="Password" HorizontalOptions="Center" VerticalOptions="Center" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Entry x:Name="Password" WidthRequest="200" IsPassword="true" HorizontalOptions="Center" VerticalOptions="Center" /> <Button Text="Show/Hide" Clicked="ShowHidePassword" />
+            </StackLayout>
+            <Button Text="Scan QR Code" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Scan_Barcode" />
+            <Button Text="Generate QR Code" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Generate_Barcode" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
